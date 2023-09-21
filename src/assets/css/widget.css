@@ -1,0 +1,37 @@
+/* 
+this file styles the friends of cranebot widget to match the main site.
+*/
+/* widget placed inside your wrapper. */
+div#focbwr-inner {
+    color: #fff;
+    background: url(../images/stars4.gif);
+    border-radius: 5px;
+    display: block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    padding: 1px 10px 3px;
+    text-align: center!important;
+    width: 200px;
+}
+
+div#focbwr-inner p, div#focbwr-inner a {
+    text-align: center!important;
+}
+
+/* link row. */
+div#focbwr-inner > div {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+/* link colors. */
+div#focbwr-inner div a, div#focbwr-inner div a:visited {
+    color: #fff;
+    text-transform: lowercase;
+    text-decoration: unset!important;
+}
+
+div#focbwr-inner div a:hover {
+    color: #ff95a3;
+}

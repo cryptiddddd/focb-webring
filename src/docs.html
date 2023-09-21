@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>api documentation ┊ friends of cranebot</title>
+
+    <meta property="description" content="webring api documentation, for friends of cranebot">
+    <meta property="og:site_name" content="friends of cranebot official">
+    <meta property="author" content="wormboy">
+    <meta name="theme-color" content="#ff7094">
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/docs.css">
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <a href="/" id="home">return home</a>
+
+    <main>
+        <section>
+            <h1>friends of cranebot api documentation</h1>
+            <p>this is the documentation for the friends of cranebot webring api.</p>
+            <p class="notice">please note: all api functions are public and use the GET method. the friends of cranebot webring holds no sensitive or private data.</p>
+            <p>for beginners, see <a href="/widget">the widget page</a>.</p>
+        </section>
+
+        <section>
+            <h2>table of contents</h2>
+            <ul>
+                <li><a href="#response-structure">response structure</a></li>
+                <li>
+                    <a href="#endpoints">api endpoints</a>
+                    <ul>
+                        <li><a href="#api-base">base uri</a></li>
+                        <li><a href="#api-random">random</a></li>
+                        <li><a href="#api-webring">webring data</a></li>
+                        <li><a href="#api-members">member index</a></li>
+                        <li><a href="#api-member">specific member</a></li>
+                    </ul>
+                </li>
+                <li><a href="#member-model">member model reference</a></li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2 id="response-structure">response structure</h2>
+            <p>every <em>successful</em> non-redirect response returns a JSON with the same basic form:</p>
+            <ul>
+                <li>"status" containing the status code.</li>
+                <li>"data" containing the desired data.</li>
+            </ul>
+            <p>on an error:</p>
+            <ul>
+                <li>"status" containing the status code.</li>
+                <li>"message" containing the error message.</li>
+            </ul>
+        </section>
+            
+        <section>
+            <h2 id="endpoints">api endpoints</h2>
+            <h3 id="api-base"><span class="method">get</span> <a href="/api/" class="api-func"></a></h3>
+            <p>base for api calls. will redirect to this page.</p>
+            <h5>possible response statuses</h5>
+            <ul>
+                <li><span class="status-code">303</span>: see other</li>
+            </ul>
+        </section>
+            
+        <section>
+            <h3 id="api-random"><span class="method">get</span> <a href="/api/random/" class="api-func"></a></h3>
+            <p>redirects to a random webring member's homepage.</p>
+            <ul>
+                <li><span class="status-code">302</span>: found</li>
+                <li><span class="status-code">404</span>: page not found (i assume, if a site goes offline).</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h3 id="api-webring"><span class="method">get</span> <a href="/api/webring/" class="api-func"></a></h3>
+            <p>returns a package of webring data.</p>
+            <p class="notice">the intention for this endpoint is to provide assets for a webring member to arrange however they wish on their page.</p>
+            <h5>possible response statuses</h5>
+            <ul>
+                <li><span class="status-code">200</span>: success</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3 id="api-members"><span class="method">get</span> <a href="/api/members/" class="api-func"></a></h3>
+            <p>returns a json-array of all current members.</p>
+            <p class="notice">see <a href="#member-model">member model reference</a> for details.</p>
+            <h5>possible response statuses</h5>
+            <ul>
+                <li><span class="status-code">200</span>: success</li>
+            </ul>
+        </section>
+        <section>
+            
+            <h3 id="api-member"><span class="method">get</span> <a href="/api/members/{member-name}" class="api-func"></a> <a href="/api/members/wormboy" class="example-link">example link</a></h3>
+            <ul>
+                <li>param <span class="param">member-name</span>: the name of the target member.</li>
+            </ul>
+            <p>returns data for a specific member, their neighbors, <em>and</em> includes webring data delivered by <a href="#api-webring">/api/webring</a>.</p>
+            <p class="notice">see <a href="#member-model">member model reference</a> for details.</p>
+            <h5>possible response statuses</h5>
+            <ul>
+                <li><span class="status-code">200</span>: success</li>
+                <li><span class="status-code">404</span>: member not found</li>
+            </ul>
+            <h5>structure</h5>
+            <p>the "data" object has the following attributes:</p>
+            <ul>
+                <li>"member": contains data for the queried member.</li>
+                <li>"next": contains data for the member's next neighbor.</li>
+                <li>"previous": contains data for the member's previous neighbor.</li>
+                <li>"webring": contains data for the webring.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 id="member-model">member model reference</h2>
+            <p>a webring member is modeled with the following attributes:</p>
+            <div class="table-wrapper">
+                <table>
+                    <tr id="table-head">
+                        <th>attribute name</th>
+                        <th>data type</th>
+                        <th>description</th>
+                        <th>example value</th>
+                    </tr>
+                    <tr>
+                        <td>index</td>
+                        <td>number</td>
+                        <td>the position of the member in the complete member index.</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>moniker</td>
+                        <td>string</td>
+                        <td>the member's desired psuedoname/nickname/username.</td>
+                        <td>wormboy</td>
+                    </tr>
+                    <tr>
+                        <td>url</td>
+                        <td>string</td>
+                        <td>url for the member's homepage.</td>
+                        <td>https://wormboy3.neocities.org/</td>
+                    </tr>
+                    <tr>
+                        <td>button</td>
+                        <td>string | null</td>
+                        <td>url for the member's button, if any.</td>
+                        <td>https://wormboy3.neocities.org/assets/images/button.png/</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

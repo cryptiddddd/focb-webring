@@ -1,0 +1,49 @@
+main {
+    background: #000a;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 3em;
+    margin: auto;
+    width: 60%;
+}
+
+a.api-func, a.api-func:visited {
+    color: var(--mid-pink);
+}
+
+a.api-func::before {
+    content: attr(href);
+}
+
+a.example-link {
+    font-size: 1.5ex;
+}
+
+span.method {
+    text-transform: uppercase;
+}
+
+p.notice {
+    margin: 0 2em;
+    font-style: italic;
+}
+
+code {
+    color: #000;
+    background-color: var(--light-pink);
+    border-radius: 2px;
+    font-weight: 700;
+    padding: 2px;
+}
+
+pre {
+    font-size: 0.9em;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+@media (max-width: 960px) {
+    main {
+        width: 90%;
+    }
+}
