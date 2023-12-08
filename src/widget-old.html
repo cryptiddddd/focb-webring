@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="darkreader-lock">
+    
+    <title>widget tutorial ┊ friends of cranebot webring</title>
+
+    <meta property="description" content="friends of cranebot homepage">
+    <meta property="og:site_name" content="friends of cranebot official">
+    <meta property="author" content="wormboy">
+    <meta name="theme-color" content="#ff7094">
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/docs.css">
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+
+    <!-- highlightjs for the syntax highlighting -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/yukaii-dark-dimmed.css">
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <a href="/" id="home">return home</a>
+    <main>
+        <section class="highlight">
+            <blockquote>
+                <p>important! this is an older tutorial. it may allow for more customization, however it is not the quickest. see <a href="/widget">here</a> for an updated tutorial.</p>
+            </blockquote>
+        </section>
+
+        <section>
+            <p>welcome to...</p>
+            <h1>wormboy's exclusive tutorial!!!! [OLD!!!]</h1>
+            <p>this page will walk you -- a beloved web on the ring -- through adding a default <em>or</em> configurable widget to your webpage[s].</p>
+        </section>
+
+        <section>
+            <h2>table of contents</h2>
+            <ul>
+                <li><a href="#snippets">code snippets</a></li>
+                <li><a href="#simple">show me the easy way</a></li>
+                <li><a href="#configure">show me how to configure</a></li>
+                <li><a href="#customize">show me how to customize completely</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 id="snippets">code snippets</h2>
+            <p>before we go into any setup, here is the base code:</p>
+            <ul>
+                <li><a href="/assets/js/webringWidget.js">javascript</a></li>
+                <li><a href="/assets/ts/webringWidget.ts">typscript</a>: for anyone who desires.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 id="simple">the easy way: how to setup</h2>
+            
+            <p>download the javascript file from above, and upload it to your neocities. [keep it with your other <code>.js</code> files!] you may rename this file anything you desire, but for consistency i will call it <code>webringWidget.js</code>.</p>
+
+            <p>now open the file.</p>
+
+            <p>notice the configuration variables at the top. only 2 are required for easy setup:</p>
+            
+            <ul>
+                <li><code>SITENAME</code>: which will be your webring nickname.</li>
+                <li><code>WRAPPER_ID</code>: which will determine the element to place the widget in.</li>
+            </ul>
+
+            <p>please note that your sitename will not be your url, but your listed name <a href="/">on the webring's home page.</a> for example:</p>
+
+            <pre><code class="language-javascript">
+const SITENAME = "divorce florida";
+const WRAPPER_ID = "webring-wrapper";
+            </code></pre>
+
+            <p class="notice">pick an id name now, and keep it in mind. it can be anything, it just needs to be unique, <code>webring-wrapper</code> is a good option, i use <code>focbwr</code> personally.</p>
+
+            <p>once you have filled in the blanks, open the html file for the page you'd like to show off your webring on.</p>
+
+            <p>within your <code>&lt;head&gt;</code> element at the top of your document, add the following script:</p>
+
+            <pre><code class="language-html">
+&lt;script type="module" src="PATH/TO/webringWidget.js"&gt;&lt;/script&gt;
+            </code></pre>
+
+            <p class="notice">be sure to customize the <code>src</code> attribute for your needs.</p>
+
+            <p>finally, somewhere on your page, ensure that you have an element with the specified id. for example:</p>
+
+            <pre><code class="language-html">
+&lt;div id="webring-wrapper"&gt;
+    &lt;!-- content will be filled in right here --&gt;
+&lt;/div&gt;
+            </code></pre>
+
+            <p class="notice">i suggest you use a <code>&lt;div&gt;</code>, but whatever!</p>
+
+            <p>now you should be good to go. in case of errors, hit <code>f12</code> and check the console. contact crane if something is really wrong :]</p>
+        </section>
+
+        <section>
+            <h2 id="configure">how to configure</h2>
+
+            <p>there are three additional configuration variables at the top of your code.</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <tr>
+                        <th>variable name</th>
+                        <th>data type</th>
+                        <th>description</th>
+                        <th>default value</th>
+                    </tr>
+                    <tr>
+                        <td>AUTOSTYLE</td>
+                        <td>boolean</td>
+                        <td>whether to add an additional stylesheet to your webpage for webring styling.</td>
+                        <td><code>true</code></td>
+                    </tr>
+                    <tr>
+                        <td>CSS_PATH</td>
+                        <td>string</td>
+                        <td>path to the <code>.css</code> file used to style the widget.</td>
+                        <td><code>"https://friends-of-cranebot.pages.dev/assets/css/widget.css"</code></td>
+                    </tr>
+                    <tr>
+                        <td>VERBOSE </td>
+                        <td>boolean</td>
+                        <td>whether to print additional status messages to console.</td>
+                        <td><code>false</code></td>
+                    </tr>
+                </table>
+            </div>
+
+            <p>try this: disable <code>AUTOSTYLE</code>, and add the following styles to your own <code>.css</code> file to customize:</p>
+
+            <pre><code class="language-css">
+/* widget placed inside your wrapper. */
+div#focbwr-inner {}
+
+/* link row. */
+div#focbwr-inner > div {}
+
+/* link colors. */
+div#focbwr-inner div a, div#focbwr-inner div a:visited {}
+
+div#focbwr-inner div a:hover {}
+            </code></pre>
+        </section>
+
+        <section>
+            <h2 id="customize">how to customize</h2>
+            <p>if you're interested in complete customization, please see the <a href="/docs">api docs</a>!</p>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,20 +1,18 @@
 /*
-this file is written for members of the friends of cranebot webring to easily include a webring widget on their page!
+this file is written for members of the friends of cranebot webring to EVEN MORE EASILY include a webring widget on their page!
 
 initially written in typescript, compiled.
 
 initially written by.... WORMBOY!
 */
 
+
 // begin config variables.
-const SITENAME = "";
-const WRAPPER_ID = "";
-
-const AUTOSTYLE = true;
+const WRAPPER_ID = "focbwr";
 const CSS_PATH = "https://friends-of-cranebot.pages.dev/assets/css/widget.css";
-const VERBOSE = false;
-
 // end config variables.
+
+const SITENAME = window.location.hostname.split(".")[0];
 
 var widgetWrapper = document.getElementById(WRAPPER_ID) as HTMLElement;
 
@@ -52,29 +50,25 @@ function createWidget(memberPackage: MemberPackage): void {
     </div>
 </div>`
 
-    if (AUTOSTYLE) {
-        let link = document.createElement("link");
-        link.rel= "stylesheet";
-        link.href = CSS_PATH;
+    // autostyle.
+    let link = document.createElement("link");
+    link.rel= "stylesheet";
+    link.href = CSS_PATH;
 
-        document.head.appendChild(link);
-    }
+    document.head.appendChild(link);
 }
 
 const request = new XMLHttpRequest();
 
 request.onload = function (): void {
-    if (VERBOSE) console.log("focbwr: package received.");
-
     let jsonResponse = JSON.parse(this.responseText);
     if (jsonResponse.status == 200) return createWidget(jsonResponse.data);
 
     // otherwise...
     console.error(`focbwr: ${jsonResponse.status} ${jsonResponse.message}`);
-    if (VERBOSE) console.error(`focbwr: member "${SITENAME}" could not be found on the friends of cranebot webring. reconfigure the "SITENAME" variable. reference https://friends-of-cranebot.pages.dev/. contact crane if something is wrong.`);
+    console.error(`your site ${SITENAME} is not a part of the webring. if you believe this is an error, please contact WORMBOY!!!!`)
 };
 
-if (VERBOSE) console.log(`focbwr: requesting data for "${SITENAME}"`);
 
 request.open("GET", `https://friends-of-cranebot.pages.dev/api/members/${SITENAME}`);
 request.send();

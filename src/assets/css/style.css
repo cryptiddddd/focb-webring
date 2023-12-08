@@ -21,6 +21,11 @@ body {
     overflow-x: hidden;
 }
 
+blockquote {
+    border-left: 3px double #fff;
+    padding-left: 1em;
+}
+
 hr {
     background-color: #fff; 
     border: none;
@@ -30,6 +35,12 @@ hr {
 .table-wrapper {
     overflow-x: auto;
     width: 100%;
+}
+
+.highlight {
+    background: color-mix(in srgb, var(--mid-pink),transparent);
+    border-radius: 2px;
+    padding: 1ex 1em;
 }
 
 th, td {

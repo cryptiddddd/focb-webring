@@ -34,8 +34,10 @@ export function onRequestGet(context: EventContext) {
     let memberData = null;
 
     for (let memberEntry of members) {
-        // find a match
-        if (memberEntry.moniker === memberName) {
+        // find a match -- moniker or neocities name.
+        if (memberEntry.moniker === memberName ||
+            memberEntry.url.split(".")[0].replaceAll("https://", "") === memberName
+            ) {
             memberData = memberEntry;
             break;
         }

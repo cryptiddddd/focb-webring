@@ -28,6 +28,10 @@ p.notice {
     font-style: italic;
 }
 
+.indent {
+    margin-left: 2em;
+}
+
 code {
     color: #000;
     background-color: var(--light-pink);
