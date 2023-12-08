@@ -7,6 +7,10 @@ main {
     width: 60%;
 }
 
+.sec {
+    margin: 2.5em 0;
+}
+
 a.api-func, a.api-func:visited {
     color: var(--mid-pink);
 }

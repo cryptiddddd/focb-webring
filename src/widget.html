@@ -31,6 +31,14 @@
         </section>
 
         <section>
+            <h2>table of contents</h2>
+            <ul>
+                <li><a href="#snippets">copy-paste setup</a></li>
+                <li><a href="#faq">questions and warnings</a></li>
+            </ul>
+        </section>
+
+        <section>
             <h2 id="snippets">copy-paste snippet</h2>
             
             <p>within the <code>&lt;head&gt;</code> element of your page, add the following line:</p>
@@ -49,13 +57,23 @@
         </section>
 
         <section>
-            <h2 id="faq">questions</h2>
+            <h2 id="faq">questions and warnings</h2>
 
-            <p><b>q: do i need to put anything in the div?</b></p>
-            <p class="indent">a: NO!!!!!!!! actually you could put an error message :] but nothign is needed thank you</p>
+            <div class="sec">
+                <p>hey! if you use a <b>local server</b> while working on your site, <b>this will not work while in development!</b></p>
+                <p>this is because the widget script checks your identity based on the <em>url</em>. while using a development server [typically hosted on <em>127.0.0.1</em> or <em>localhost</em>], this does not work for obvious reasons.</p>
+                <p><a href="/widget-old">the older tutorial</a> does <em>not</em> have this issue, but is slightly more convoluted.</p>
+            </div>
 
-            <p><b>q: it isn't working</b></p>
-            <p class="indent">that's ok. if you know how, open your browser inspect tool and go to "console". send me a screencap of whatever errors pop up and i help :]</p>
+            <div class="sec">
+                <p><b>q: do i need to put anything in the div?</b></p>
+                <p class="indent">a: NO!!!!!!!! actually you could put an error message :] but nothign is needed thank you</p>
+            </div>
+
+            <div class="sec">
+                <p><b>q: it isn't working</b></p>
+                <p class="indent">that's ok. if you know how, open your browser inspect tool and go to "console". send me a screencap of whatever errors pop up and i help :]</p>
+            </div>
         </section>
     </main>
 </body>
