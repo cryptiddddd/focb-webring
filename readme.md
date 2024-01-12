@@ -32,7 +32,7 @@ npx wrangler pages deploy src/
 
 to launch local test server:
 ```
-npx wrangler pages dev src/
+npx wrangler pages dev src/ --r2=cranebotBucket
 ```
 
 to connect to live production logging: 
