@@ -1,16 +1,20 @@
 {
-  "name": "friends-of-cranebot-web-ring",
+  "name": "friends-of-cranebot-webring",
   "version": "1.0.0",
-  "description": "",
+  "description": "cloudflare pages site for the focb webring, plus bonus features for me.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx wrangler pages dev src/ --r2=cranebotBucket",
+    "deploy": "npx wrangler pages deploy src/",
+    "tail": "npx wrangler pages deployment tail",
+    "test:upload": "curl -X POST -F name=\"file.png\" -F data=@src/assets/images/cranebot_2x.png -H \"Authorization: secret\" http://127.0.0.1:8788/files/upload",
+    "test:delete": "curl -X DELETE -F name=\"file.png\" -H \"Authorization: secret\" http://127.0.0.1:8788/files/delete"
   },
-  "author": "",
+  "author": "crane",
   "license": "ISC",
   "dependencies": {
     "typescript": "^5.1.6",
-    "wrangler": "^3.4.0"
+    "wrangler": "^3.15.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20231121.0"

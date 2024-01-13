@@ -27,17 +27,17 @@ this site exists on cloudflare's pages hosting service. the following are a few 
 
 to deploy update, from project root:
 ```
-npx wrangler pages deploy src/
+npm run deploy
 ```
 
 to launch local test server:
 ```
-npx wrangler pages dev src/ --r2=cranebotBucket
+npm run dev
 ```
 
 to connect to live production logging: 
 ```
-npx wrangler pages deployment tail
+npm run tail
 ```
 
 
