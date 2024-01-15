@@ -27,7 +27,7 @@ export async function onRequestDelete(ctx: Context): Promise<Response> {
 
     // delete it and send validating feedback.
     await ctx.env.cranebotBucket.delete(fileName);
-    return Response.json({status: 200, message: `'${fileName}' has been deleted.`});
+    return Response.json({status: 204, message: `'${fileName}' has been deleted.`}, {status: 204});
 }
 
 

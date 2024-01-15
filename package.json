@@ -7,8 +7,7 @@
     "dev": "npx wrangler pages dev src/ --r2=cranebotBucket",
     "deploy": "npx wrangler pages deploy src/ --branch=production",
     "tail": "npx wrangler pages deployment tail",
-    "test:upload": "curl -X POST -F name=\"file.png\" -F data=@src/assets/images/cranebot_2x.png -H \"Authorization: secret\" http://127.0.0.1:8788/files/upload",
-    "test:delete": "curl -X DELETE -F name=\"file.png\" -H \"Authorization: secret\" http://127.0.0.1:8788/files/delete"
+    "test:delete": "curl -X DELETE -F name=\"bald_devito.png\" -H \"Authorization: secret\" http://127.0.0.1:8788/files/delete"
   },
   "author": "crane",
   "license": "ISC",
