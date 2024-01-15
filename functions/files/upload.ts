@@ -35,6 +35,10 @@ export async function onRequestPost(ctx: Context): Promise<Response> {
     let params = new URLSearchParams(ctx.request.url.split("?")[1]);
     let fileName = params.get("name");
     let action = params.get("action");
+
+    // context-dependent params
+    let contentType = params.get("type");
+    let uploadID = params.get("uploadID");
     
     
     // case switch between mpu-create and mpu-complete
@@ -44,9 +48,13 @@ export async function onRequestPost(ctx: Context): Promise<Response> {
             if (await ctx.env.cranebotBucket.get(fileName) !== null) {
                 return objectExists(fileName);
             }
+            
+            // handle missing arguments.
+            if (fileName === null) return missingArgument("name");
+            else if (contentType === null) return missingArgument("type");
 
             // create upload.
-            let upload = await ctx.env.cranebotBucket.createMultipartUpload(fileName);
+            let upload = await ctx.env.cranebotBucket.createMultipartUpload(fileName, {httpMetadata: {contentType: contentType}});
             
             // return data
             let data = {uploadID: upload.uploadId, key: upload.key};
@@ -55,10 +63,7 @@ export async function onRequestPost(ctx: Context): Promise<Response> {
         
         case "mpu-complete": {
             // get id
-            let uploadID = params.get("uploadID");
-            if (uploadID === null) {
-                return missingArgument("uploadID");
-            }
+            if (uploadID === null) return missingArgument("uploadID");
             
             // get body
             const completeBody: any = await ctx.request.json();
@@ -106,16 +111,16 @@ export async function onRequestPut(ctx: Context): Promise<Response> {
 
     // get data from args: file data and name.
     let params = new URLSearchParams(ctx.request.url.split("?")[1]);
-    console.log(params);
     let action = params.get("action");
+
+    // context dependent necessity.
+    let fileName = params.get("name");
+    let uploadID = params.get("uploadID");
+    let partNumber = parseInt(params.get("partNumber"));
     
     switch (action) {
         // check action for mpu-partupload
         case "mpu-uploadpart": {
-            let fileName = params.get("name");
-            let uploadID = params.get("uploadID");
-            let partNumber = parseInt(params.get("partNumber"));
-
             // handle missing fields
             if (uploadID === null) return missingArgument("uploadID");
             else if (fileName === null) return missingArgument("name");

@@ -16,8 +16,8 @@ export async function onRequestDelete(ctx: Context): Promise<Response> {
     }
 
     // get name of file to delete.
-    let formData = await ctx.request.formData();
-    let fileName = formData.get("name");
+    let params = new URLSearchParams(ctx.request.url.split("?")[1]);
+    let fileName = params.get("name");
 
     // check that it exists.
     let check = await ctx.env.cranebotBucket.get(fileName) as R2ObjectBody;

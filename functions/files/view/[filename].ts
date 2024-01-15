@@ -33,11 +33,11 @@ export async function onRequestGet(ctx: Context): Promise<Response> {
 
     // if object has range.
     if (object.range) {
-        headers.set("content-range", `bytes ${(object.range as any).offset}-${(object.range as any).end ?? object.size - 1}/${object.size}`)
+        headers.set("content-range", `bytes ${(object.range as any).offset}-${(object.range as any).end ?? object.size - 1}/${object.size}`);
     }
     
     // decide status.
-    const status = object.body ? (ctx.request.headers.get("range") !== null ? 206 : 200) : 304
+    const status = object.body ? (ctx.request.headers.get("range") !== null ? 206 : 200) : 304;
 
     // return response.
     return new Response(object.body, {
