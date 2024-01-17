@@ -11,7 +11,7 @@ interface Context {
     env: Env;
     params: Params;
     request: Request;
-    next: () => Promise<void>;
+    next: () => Promise<void | Response>;
 }
 
 

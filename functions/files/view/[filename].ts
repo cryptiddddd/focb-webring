@@ -2,8 +2,6 @@
 // ex: /files/view/lala.jpg
 
 import type { Context } from "../types";
-
-import { page404 } from "../common";
     
 
 /**
@@ -23,7 +21,7 @@ export async function onRequestGet(ctx: Context): Promise<Response> {
 
     // if null, return error
     if (object === null) {
-        return page404();
+        return await ctx.next() as Response;
     }
 
     // headers

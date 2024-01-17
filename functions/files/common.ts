@@ -1,14 +1,5 @@
-import html from "../../src/404.html"; // don't worry about it, funny cloudflare thing i can do.
 import type { Context } from "./types";
 
-
-function page404(): Response {
-    // return the 404 page!
-    return new Response(
-		html,
-        {headers: { "Content-Type": "text/html" }}
-	);
-}
 
 
 function unauthorized(): Response {
@@ -28,4 +19,4 @@ function authorize(ctx: Context): boolean {
 }
 
 
-export { page404, authorize, unauthorized };
+export { authorize, unauthorized };
