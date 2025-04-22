@@ -40,6 +40,12 @@ const members = [
         "button": null,
         "moniker": "spark",
         "url": "https://sparkdust.neocities.org/"
+    },
+    {
+        "index": 7,
+        "button": null,
+        "moniker": "alasdair",
+        "url": "https://wingfeathers.neocities.org/"
     }
 ];
 
