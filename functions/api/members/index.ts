@@ -25,24 +25,12 @@ const members = [
     },
     {
         "index": 4,
-        "button": "https://wormboy3.neocities.org/assets/images/buttons/visitmossland.png",
-        "moniker": "moss",
-        "url": "https://mossland.neocities.org"
-    },
-    {
-        "index": 5,
         "button": null,
         "moniker": "divorce florida",
         "url": "https://divorceflorida.neocities.org/"
     },
     {
-        "index": 6,
-        "button": null,
-        "moniker": "spark",
-        "url": "https://sparkdust.neocities.org/"
-    },
-    {
-        "index": 7,
+        "index": 5,
         "button": null,
         "moniker": "alasdair",
         "url": "https://wingfeathers.neocities.org/"
